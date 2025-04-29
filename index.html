@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Покупка бокса</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #111;
+      color: white;
+      padding: 30px;
+    }
+    button {
+      background: #0088cc;
+      color: white;
+      font-size: 18px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Бокс «Окуп»</h2>
+  <p>Цена: <strong>20 Telegram Stars</strong></p>
+  <button onclick="buy()">Купить</button>
+
+  <script>
+    async function buy() {
+      try {
+        await Telegram.WebApp.ready(); // ждем готовности
+
+        Telegram.WebApp.requestStarsTransaction({
+          amount: 20, // сколько звезд
+          description: "Покупка бокса «Окуп»",
+          payload: "buy_okup_box", // можно передавать ID покупки
+        });
+      } catch (e) {
+        alert("Ошибка: " + e.message);
+      }
+    }
+  </script>
+</body>
+</html>
